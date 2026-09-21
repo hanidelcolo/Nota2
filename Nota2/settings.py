@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'core',
     'about',
     'contacts',
-    'catalog',
+    'catalog.apps.CatalogConfig',
 ]
 
 MIDDLEWARE = [
