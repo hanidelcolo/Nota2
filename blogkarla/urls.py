@@ -21,6 +21,8 @@ from about import views as about_views
 from contact import views as contact_views
 from post import views as post_views
 
+from django.conf import settings 
+
 urlpatterns = [
     path('',core_views.home,name="home"),
     path('about/',about_views.about,name="about"),
@@ -28,3 +30,7 @@ urlpatterns = [
     path('post/',post_views.post,name="post"),
     path('admin/', admin.site.urls),
 ]
+
+if settings.DEBUG:
+    from django.conf.urls.static import static
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 

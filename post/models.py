@@ -3,7 +3,7 @@ from django.db import models
 class News(models.Model):
     title=models.CharField(max_length=100,verbose_name="Titulo")
     detail=models.TextField(verbose_name="Detalle")
-    image=models.ImageField()
+    image=models.ImageField(upload_to="news",verbose_name="Imagen")
     created=models.DateTimeField(auto_now=True,auto_now_add=True,verbose_name="F. de creación")
     updated=models.DateTimeField(auto_now=True,verbose_name="F. de edición")
 
