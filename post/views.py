@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import News
 
 def post(request):
     news=News.objects.all()
