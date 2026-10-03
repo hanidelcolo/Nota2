@@ -78,3 +78,8 @@ class News(models.Model):
             return self.blurb
         text = self.detail.strip()
         return text if len(text) <= 120 else text[:117].rstrip() + "…"
+
+
+    @property
+    def rating_percent(self):
+        return round(float(self.rating) / 5 * 100)
