@@ -1,0 +1,66 @@
+# ============================================================
+# BlogHani - Django
+# La base de datos (db.sqlite3) NO se ignora a proposito: este
+# blog es personal y su contenido se edita a mano, asi que el
+# archivo forma parte del proyecto. Si prefieres que viva solo
+# en tu maquina, descomenta la linea de la seccion "Django".
+# ============================================================
+
+
+# ---------- Python ----------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+
+
+# ---------- Entornos virtuales ----------
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+
+# ---------- Django ----------
+*.log
+db.sqlite3-journal
+db.sqlite3-wal
+db.sqlite3-shm
+staticfiles/
+media/CACHEDIRS.txt
+
+# Descomenta si en algun momento quieres la base de datos solo en local
+# db.sqlite3
+
+
+# ---------- Variables de entorno / secretos ----------
+.env
+.env.*
+!.env.example
+
+
+# ---------- Editores ----------
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+
+# ---------- Pruebas y cobertura ----------
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.mypy_cache/
+.ruff_cache/
