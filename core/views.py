@@ -15,6 +15,5 @@ def home(request):
     return render(request, "core/home.html", {
         'latest': latest,
         'reading_now': reading_now,
-        'featured': reading_now[0] if reading_now else None,
         'stats': stats,
     })

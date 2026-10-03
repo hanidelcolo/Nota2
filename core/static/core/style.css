@@ -437,40 +437,6 @@ nav a.active {
   font-weight: 400;
 }
 
-.mini-note {
-  width: 113px;
-  height: 113px;
-  position: absolute;
-  z-index: 3;
-  right: 20px;
-  bottom: 43px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #d6b9c0;
-  border-radius: 50%;
-  background: #fffaf8;
-  box-shadow: 0 12px 35px rgba(99, 65, 73, 0.11);
-  transform: rotate(-7deg);
-}
-
-.mini-note span,
-.mini-note small {
-  color: #9d7d85;
-  font-size: 7px;
-  letter-spacing: 0.11em;
-  text-transform: uppercase;
-}
-
-.mini-note strong {
-  margin: 2px 0;
-  font-family: "Gilda Display", serif;
-  color: #936270;
-  font-size: 30px;
-  font-weight: 400;
-}
-
 .sparkle {
   position: absolute;
   z-index: 3;
@@ -824,38 +790,6 @@ nav a.active {
   object-position: center;
 }
 
-.portrait-frame {
-  text-align: center;
-}
-
-.portrait-frame span {
-  font-family: "Gilda Display", serif;
-  color: #a16d79;
-  font-size: 100px;
-  font-style: italic;
-}
-
-.portrait-frame p {
-  color: #9a727b;
-  font-size: 9px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-}
-
-.portrait-flower {
-  width: 75px;
-  height: 75px;
-  position: absolute;
-  right: 7px;
-  bottom: 60px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: #fffaf8;
-  color: var(--rose);
-  box-shadow: 0 10px 30px rgba(108, 71, 81, 0.12);
-}
-
 .about-copy .lead {
   margin: 0 0 25px;
   color: #6c545a;
@@ -1175,10 +1109,6 @@ footer {
 
   .feature-card {
     width: min(65vw, 265px);
-  }
-
-  .mini-note {
-    right: 3%;
   }
 
   .intro-strip p {
