@@ -65,6 +65,16 @@ html {
   scroll-behavior: smooth;
 }
 
+/* ---- Zoom global ----
+   El sitio esta maquetado con medidas px (55 de 55 font-size, sin rem ni em),
+   por eso subir ":root { font-size }" no tendria ningun efecto: aqui no hay
+   unidades relativas queescalen. Esto si escala tipografia, espaciados,
+   anchos y portadas de golpe. Para adjustar el tamano del sitio, cambia
+   este unico numero. */
+html {
+  zoom: 1.1;
+}
+
 body {
   margin: 0;
   min-width: 320px;
@@ -203,6 +213,15 @@ nav a.active::after {
 
 nav a.active {
   color: var(--rose-dark);
+}
+
+/* Agrupa el boton de tema, el de menu y la navegacion a la derecha.
+   Sin position:relative, para que el nav desplegable siga tomando
+   como referencia posicional a .site-header. */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
 }
 
 .menu-button {
@@ -1523,6 +1542,377 @@ footer {
 
 @media (prefers-reduced-motion: reduce) {
   .reading-slide {
+    transition: none;
+  }
+}
+
+/* ==========================================================================
+   Modo oscuro
+   Se activa con data-theme="dark" en <html>. Es un bloque autonomo: el tema
+   claro de arriba no se modifica. Los selectores repiten los del tema claro
+   con los valores recalcados sobre una base ciruela calida (#17131b), para
+   que el sitio mantenga su identidad rosa en vez de verse gris.
+   ========================================================================== */
+
+/* Transiciones del cambio de tema (solo se ven al alternar, no al cargar) */
+body,
+.site-header,
+.site-footer,
+nav,
+.hero,
+.intro-strip,
+.latest,
+.review-card,
+.post-row,
+.feature-card,
+.quote-section,
+.reader-stats,
+.detail-body,
+.post-detail,
+.contact-page,
+.contact-form,
+.portrait,
+.about-layout {
+  transition: background-color 260ms ease, color 260ms ease, border-color 260ms ease;
+}
+
+/* ---- Tokens y base ---- */
+[data-theme="dark"] {
+  color-scheme: dark;
+  color: #f5ecee;
+  background: #17131b;
+
+  --ink: #f5ecee;
+  --muted: #a08d93;
+  --rose: #e0a8b4;
+  --rose-dark: #f0bcc6;
+  --blush: #2a2229;
+  --cream: #17131b;
+  --line: #3a3139;
+}
+
+[data-theme="dark"] body {
+  background: radial-gradient(circle at 8% 12%, rgba(184, 132, 144, 0.13), transparent 22rem), #17131b;
+}
+
+[data-theme="dark"] a:focus-visible,
+[data-theme="dark"] button:focus-visible,
+[data-theme="dark"] input:focus-visible,
+[data-theme="dark"] textarea:focus-visible {
+  outline: 2px solid #e0a8b4;
+}
+
+/* ---- Cabecera, marca y navegacion ---- */
+[data-theme="dark"] .site-header {
+  border-bottom: 1px solid rgba(184, 132, 144, 0.26);
+}
+
+[data-theme="dark"] .brand-mark {
+  border-color: #4a3d45;
+}
+
+[data-theme="dark"] .header-brand-mark {
+  background-color: #2a2229;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] nav a,
+[data-theme="dark"] .footer-links a {
+  color: #c4b0b6;
+}
+
+/* ---- Boton del tema ---- */
+.theme-toggle {
+  width: 38px;
+  height: 38px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 50% 50% 45% 55%;
+  background: transparent;
+  cursor: pointer;
+  transform: rotate(-5deg);
+  transition: background-color 220ms ease, border-color 220ms ease;
+}
+
+.theme-toggle:hover {
+  background: var(--blush);
+}
+
+.theme-toggle svg {
+  width: 17px;
+  height: 17px;
+  display: block;
+  color: var(--rose-dark);
+}
+
+.theme-toggle .icon-moon {
+  display: none;
+}
+
+[data-theme="dark"] .theme-toggle .icon-sun {
+  display: none;
+}
+
+[data-theme="dark"] .theme-toggle .icon-moon {
+  display: block;
+}
+
+[data-theme="dark"] .theme-toggle svg {
+  color: var(--rose);
+}
+
+/* ---- Hero ---- */
+[data-theme="dark"] .eyebrow::before {
+  background: #a87c88;
+}
+
+[data-theme="dark"] .hero h1,
+[data-theme="dark"] .page-heading h1,
+[data-theme="dark"] .about-copy h1,
+[data-theme="dark"] .contact-intro h1,
+[data-theme="dark"] .detail-copy h1 {
+  color: #f5ecee;
+}
+
+[data-theme="dark"] .hero h1 .fg-inline-italic {
+  color: #e8a8b6;
+}
+
+[data-theme="dark"] .hero-copy > p {
+  color: #b9a5ab;
+}
+
+[data-theme="dark"] .primary-button {
+  color: #17131b;
+}
+
+[data-theme="dark"] .primary-button:hover {
+  background: #ecb9c4;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+[data-theme="dark"] .shape-one {
+  background: #241d26;
+}
+
+[data-theme="dark"] .shape-two {
+  border: 1px solid rgba(184, 132, 144, 0.22);
+}
+
+[data-theme="dark"] .feature-card {
+  border: 1px solid rgba(120, 96, 108, 0.55);
+  background: rgba(34, 28, 36, 0.92);
+  box-shadow: 0 32px 70px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] .sparkle {
+  color: #b08a94;
+}
+
+/* ---- Tiras y tarjetas ---- */
+[data-theme="dark"] .intro-strip {
+  background: #201a22;
+}
+
+[data-theme="dark"] .intro-strip p {
+  color: #c2a9b0;
+}
+
+[data-theme="dark"] .intro-strip span {
+  color: #8b7079;
+}
+
+[data-theme="dark"] .text-link {
+  border-bottom: 1px solid #8f6b76;
+}
+
+[data-theme="dark"] .review-card {
+  background: rgba(43, 35, 45, 0.7);
+}
+
+[data-theme="dark"] .review-card:hover {
+  box-shadow: 0 24px 55px rgba(0, 0, 0, 0.55);
+}
+
+[data-theme="dark"] .post-number,
+[data-theme="dark"] .post-index {
+  color: #6d5a61;
+}
+
+[data-theme="dark"] .category {
+  color: #d5a2ae;
+}
+
+[data-theme="dark"] .review-author {
+  color: #b0a0a5;
+}
+
+[data-theme="dark"] .review-blurb,
+[data-theme="dark"] .detail-body p {
+  color: #bda9af;
+}
+
+[data-theme="dark"] .rating span,
+[data-theme="dark"] .stars-fill {
+  color: #d9929f;
+}
+
+[data-theme="dark"] .rating strong {
+  color: #c3aeb4;
+}
+
+/* ---- Rincon lector ---- */
+[data-theme="dark"] .quote-section {
+  background: #1c1720;
+}
+
+[data-theme="dark"] .reader-corner-heading .eyebrow::before {
+  background: #c99aa6;
+}
+
+[data-theme="dark"] .reader-corner-heading h2 {
+  color: #e3d3d8;
+}
+
+[data-theme="dark"] .reader-corner-heading p {
+  color: #ad969d;
+}
+
+[data-theme="dark"] .reader-stats {
+  border-top: 1px solid rgba(184, 132, 144, 0.2);
+  border-bottom: 1px solid rgba(184, 132, 144, 0.2);
+}
+
+[data-theme="dark"] .reader-stats > div {
+  border-right: 1px solid rgba(184, 132, 144, 0.2);
+}
+
+[data-theme="dark"] .reader-stats strong {
+  color: #e0b8c1;
+}
+
+[data-theme="dark"] .reader-stats span {
+  color: #a88f96;
+}
+
+/* ---- Sobre mi ---- */
+[data-theme="dark"] .portrait {
+  background: #241d26;
+}
+
+[data-theme="dark"] .portrait::before {
+  border: 1px solid rgba(184, 132, 144, 0.22);
+}
+
+[data-theme="dark"] .about-copy .lead {
+  color: #cdb8bf;
+}
+
+[data-theme="dark"] .favorites span,
+[data-theme="dark"] .detail-label,
+[data-theme="dark"] .detail-rating small {
+  color: #a89097;
+}
+
+[data-theme="dark"] .copyright {
+  color: #a08d93;
+}
+
+/* ---- Detalle ---- */
+[data-theme="dark"] .stars {
+  color: #4a3d45;
+}
+
+[data-theme="dark"] .detail-rating strong {
+  color: #e0b8c1;
+}
+
+/* ---- Contacto ---- */
+[data-theme="dark"] .contact-intro::after {
+  color: #b98d98;
+}
+
+[data-theme="dark"] .contact-form {
+  background: rgba(40, 33, 43, 0.6);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), inset 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+[data-theme="dark"] .contact-form label {
+  color: #c9adb5;
+}
+
+[data-theme="dark"] .contact-form input,
+[data-theme="dark"] .contact-form textarea {
+  border-bottom: 1px solid #4d4048;
+}
+
+[data-theme="dark"] .contact-form input::placeholder,
+[data-theme="dark"] .contact-form textarea::placeholder {
+  color: #8b757c;
+}
+
+/* ---- Paletas de portada ---- */
+[data-theme="dark"] .cover {
+  --accent: #f2b8c2;
+}
+
+[data-theme="dark"] .palette-rosa {
+  --accent: #f2b8c2;
+  background: linear-gradient(to bottom right in oklab, #4a2f38, #382530, #5c3a44);
+}
+
+[data-theme="dark"] .palette-lila {
+  --accent: #d3bedb;
+  background: linear-gradient(to bottom right in oklab, #342b3a, #2a2330, #453a4d);
+}
+
+[data-theme="dark"] .palette-beige {
+  --accent: #dcc4a4;
+  background: linear-gradient(to bottom right in oklab, #3a2f22, #2e2620, #4d3f2f);
+}
+
+/* ---- Imagenes ----
+   Los PNG de assets son RGB sin canal alfa y con fondo rosa claro, asi que
+   sobre fondo oscuro quedarían como manchas brillantes. Se atenúan un poco
+   para que se integren. Si algun dia se reexportan con alfa, este bloque
+   se puede borrar. */
+[data-theme="dark"] .header-brand-mark img,
+[data-theme="dark"] .footer-brand .brand-mark img {
+  filter: brightness(0.92) saturate(1.1);
+}
+
+[data-theme="dark"] .portrait > img {
+  filter: brightness(0.88) saturate(1.05);
+}
+
+/* ---- Navegacion movil (el nav de escritorio es transparente) ---- */
+@media (max-width: 700px) {
+  [data-theme="dark"] nav {
+    background: rgba(23, 19, 27, 0.98);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body,
+  .site-header,
+  .site-footer,
+  nav,
+  .hero,
+  .intro-strip,
+  .latest,
+  .review-card,
+  .post-row,
+  .feature-card,
+  .quote-section,
+  .reader-stats,
+  .detail-body,
+  .post-detail,
+  .contact-page,
+  .contact-form,
+  .portrait,
+  .about-layout {
     transition: none;
   }
 }

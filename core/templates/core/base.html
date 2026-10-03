@@ -10,6 +10,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Gilda+Display&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'core/style.css' %}">
+
+  <script>
+    /* Se aplica el tema antes de pintar para evitar el destello de color.
+       Por defecto es claro; "dark" queda recordado si el visitante lo eligio. */
+    (function () {
+      var t;
+      try { t = localStorage.getItem('theme'); } catch (e) {}
+      if (t !== 'dark' && t !== 'light') { t = 'light'; }
+      document.documentElement.dataset.theme = t;
+    })();
+  </script>
 </head>
 <body>
   {% with current=request.resolver_match.url_name %}
@@ -26,18 +37,33 @@
         </span>
       </a>
 
-      <button class="menu-button" type="button" id="menu-button"
-              aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menú">
-        <span></span>
-        <span></span>
-      </button>
+      <div class="header-actions">
+        <button class="theme-toggle" type="button" id="theme-toggle"
+                aria-pressed="false" aria-label="Activar modo oscuro">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.2" />
+            <path d="M12 2.4v2.3M12 19.3v2.3M2.4 12h2.3M19.3 12h2.3M5.2 5.2l1.7 1.7M17.1 17.1l1.7 1.7M18.8 5.2l-1.7 1.7M6.9 17.1l-1.7 1.7" />
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5a8.6 8.6 0 1 0 11.1 11.1z" />
+          </svg>
+        </button>
 
-      <nav id="main-nav" aria-label="Navegación principal">
-        <a href="{% url 'home' %}"{% if current == 'home' %} class="active" aria-current="page"{% endif %}>Inicio</a>
-        <a href="{% url 'post' %}"{% if current == 'post' %} class="active" aria-current="page"{% endif %}>Posts</a>
-        <a href="{% url 'about' %}"{% if current == 'about' %} class="active" aria-current="page"{% endif %}>Sobre mí</a>
-        <a href="{% url 'contact' %}"{% if current == 'contact' %} class="active" aria-current="page"{% endif %}>Contacto</a>
-      </nav>
+        <button class="menu-button" type="button" id="menu-button"
+                aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menú">
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav id="main-nav" aria-label="Navegación principal">
+          <a href="{% url 'home' %}"{% if current == 'home' %} class="active" aria-current="page"{% endif %}>Inicio</a>
+          <a href="{% url 'post' %}"{% if current == 'post' %} class="active" aria-current="page"{% endif %}>Posts</a>
+          <a href="{% url 'about' %}"{% if current == 'about' %} class="active" aria-current="page"{% endif %}>Sobre mí</a>
+          <a href="{% url 'contact' %}"{% if current == 'contact' %} class="active" aria-current="page"{% endif %}>Contacto</a>
+        </nav>
+      </div>
     </header>
 
     <main>
@@ -74,6 +100,25 @@
         var open = nav.classList.toggle('nav-open');
         btn.setAttribute('aria-expanded', open ? 'true' : 'false');
       });
+
+      /* Modo claro / oscuro */
+      var toggle = document.getElementById('theme-toggle');
+      if (toggle) {
+        function syncThemeButton() {
+          var dark = document.documentElement.dataset.theme === 'dark';
+          toggle.setAttribute('aria-pressed', dark ? 'true' : 'false');
+          toggle.setAttribute('aria-label', dark ? 'Activar modo claro' : 'Activar modo oscuro');
+        }
+
+        syncThemeButton();
+
+        toggle.addEventListener('click', function () {
+          var next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+          document.documentElement.dataset.theme = next;
+          try { localStorage.setItem('theme', next); } catch (e) {}
+          syncThemeButton();
+        });
+      }
 
       var carousel = document.querySelector('[data-reading-carousel]');
       if (carousel) {
