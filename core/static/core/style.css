@@ -1,0 +1,94 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Gilda+Display&display=swap");
+
+:root {
+  font-family: "DM Sans", sans-serif;
+  color: #4f3d42;
+  background: #fdfaf8;
+  --ink: #4f3d42;
+  --muted: #8f7d81;
+  --rose: #b98490;
+  --rose-dark: #8f5966;
+  --blush: #f4e3e5;
+  --cream: #fdfaf8;
+  --line: #eadcdf;
+  --accent: #9c6873;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at 8% 12%, rgba(240, 211, 216, 0.3), transparent 22rem), #fdfaf8;
+}
+
+/* Titulos Generales */
+h1, h2, h3 { font-family: "Gilda Display", serif; font-weight: 400; color: #4e3a40;}
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 10px; color: var(--rose-dark);
+  font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+}
+.eyebrow::before { content: ""; width: 24px; height: 1px; background: #c69ba5; }
+
+/* Contenedores Principales */
+.page-shell { min-height: 680px; padding-top: 100px; padding-bottom: 130px; width: min(1180px, calc(100% - 48px)); margin: 0 auto; }
+.section-shell { width: min(1180px, calc(100% - 48px)); margin: 0 auto; }
+.page-heading { max-width: 680px; margin-bottom: 65px; }
+.page-heading h1 { font-size: clamp(50px, 6vw, 74px); margin: 24px 0 22px; line-height: 0.98; letter-spacing: -0.035em;}
+.page-heading p { color: var(--muted); font-size: 14px; line-height: 1.7; }
+
+/* Botones Principales */
+.primary-button {
+  display: inline-flex; align-items: center; justify-content: center; gap: 20px;
+  min-height: 50px; padding: 0 25px; border: 1px solid var(--rose-dark);
+  border-radius: 999px; background: var(--rose-dark); color: #fffaf8;
+  font-size: 12px; letter-spacing: 0.04em; cursor: pointer; text-decoration: none;
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+.primary-button:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(112, 71, 81, 0.17); background: #7c4d58; }
+
+/* Portadas (Covers) */
+.cover {
+  height: 305px; border-radius: 150px 150px 13px 13px; position: relative; overflow: hidden;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 25px; text-align: center; isolation: isolate;
+  background: linear-gradient(to bottom right, #f0c8d2, #f7e3e5, #cfa8ae); /* Palette 1 default */
+}
+.cover::before, .cover::after {
+  content: ""; position: absolute; width: 120px; height: 220px; border-radius: 50%; z-index: -1;
+  border: 1px solid color-mix(in srgb, var(--accent), transparent 45%);
+}
+.cover::before { left: -57px; bottom: -80px; transform: rotate(-30deg); }
+.cover::after { right: -65px; top: -50px; transform: rotate(42deg); }
+.cover-orbit { position: absolute; width: 125px; height: 125px; border-radius: 50%; border: 1px solid color-mix(in srgb, var(--accent), transparent 48%);}
+.cover p { margin: 18px 0 16px; font-family: "Gilda Display", serif; color: var(--accent); font-size: 28px; line-height: 1.05; z-index: 1;}
+.cover-kicker { color: var(--accent); font-size: 7px; letter-spacing: 0.2em; text-transform: uppercase; z-index: 1;}
+
+/* Listado de Posts */
+.post-list { border-top: 1px solid var(--line); }
+.post-row { display: grid; grid-template-columns: 145px 1fr auto; align-items: center; gap: 35px; padding: 28px 0; border-bottom: 1px solid var(--line); }
+.post-row .cover { height: 175px; border-radius: 75px 75px 8px 8px; }
+.post-row .cover p { margin: 10px 0; font-size: 17px; }
+.post-row h2 { margin: 7px 0 10px; font-family: "Gilda Display", serif; font-size: 32px; font-weight: 400; }
+.category { margin: 0 0 9px; color: #a67883; font-size: 8px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; }
+.post-row > div > p { max-width: 620px; color: var(--muted); font-size: 12px; line-height: 1.65; }
+.post-index { align-self: start; color: #d0b9be; font-family: "Gilda Display", serif; font-size: 22px; }
+
+/* Sobre Mi (About) */
+.about-layout { display: grid; grid-template-columns: 0.8fr 1.2fr; align-items: center; gap: 100px; }
+.portrait { min-height: 530px; position: relative; display: grid; place-items: center; overflow: hidden; border-radius: 52% 48% 50% 50%; background: #f2dfe2; }
+.portrait::before { content: ""; position: absolute; inset: 22px; border: 1px solid rgba(174, 120, 134, 0.3); border-radius: inherit; z-index: 1; pointer-events: none; }
+.portrait > img { width: 100%; height: 100%; position: absolute; inset: 0; display: block; object-fit: cover; object-position: center; }
+.about-copy .lead { margin: 0 0 25px; color: #6c545a; font-family: "Gilda Display", serif; font-size: 25px; line-height: 1.5; }
+.about-copy > p:not(.lead) { color: var(--muted); font-size: 13px; line-height: 1.85; }
+.favorites { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 38px; padding-top: 28px; border-top: 1px solid var(--line); }
+.favorites span { color: #aa9197; font-size: 8px; letter-spacing: 0.12em; text-transform: uppercase; }
+.favorites .favorite-value { margin-top: 7px; margin-bottom: 0; font-family: "Gilda Display", serif; font-size: 18px; font-weight: 400; }
+
+/* Contacto */
+.contact-page { display: grid; grid-template-columns: 0.9fr 1.1fr; align-items: center; gap: 100px; padding: 100px 0 130px; }
+.contact-intro::after { content: "✦"; display: block; margin-top: 35px; color: #c7929d; font-size: 20px; }
+.contact-form { padding: 30px 45px 35px; border: 5px solid var(--line); border-radius: 24px; background: rgba(248, 237, 238, 0.55); box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25), inset 0 4px 4px rgba(0, 0, 0, 0.25); }
+.contact-form label { display: block; margin-bottom: 24px; color: #8d6972; font-size: 9px; font-weight: 600; letter-spacing: 0.13em; text-transform: uppercase; }
+.contact-form input, .contact-form textarea { width: 100%; margin-top: 9px; padding: 12px 0; border: 0; border-bottom: 1px solid #d9bec4; background: transparent; color: var(--ink); font-size: 13px; }
+.contact-form input:focus, .contact-form textarea:focus { outline: none; border-bottom: 2px solid var(--rose); }

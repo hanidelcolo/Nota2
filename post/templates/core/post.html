@@ -1,23 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    Post
-    <hr>
-    {% for n in news %}
-    {{  n.title   }}
-    <br>
-    {{  n.detail   }}
-    <br>
-    <img src="{{ n.image.url  }}" width="300px" height="500px" alt="">
-    
-    <br/>
-    <hr>
-    
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="page-shell section-shell">
+  <div class="page-heading">
+    <span class="eyebrow">archivo de lecturas</span>
+    <h1>Todos mis posts</h1>
+    <p>Reseñas honestas, sin spoilers y escritas con mucho cariño.</p>
+  </div>
+  
+  <div class="post-list">
+    <!-- Inicio del Ciclo de Django -->
+    {% for articulo in news %}
+    <article class="post-row">
+      <!-- La portada del Manhwa -->
+      <div class="cover">
+        <div class="cover-orbit"></div>
+        <span class="cover-kicker">a manhwa note</span>
+        <p>{{ articulo.title }}</p>
+      </div>
+      
+      <!-- Contenido del Post -->
+      <div>
+        <span class="category">Romance · Fantasía</span>
+        <h2>{{ articulo.title }}</h2>
+        <p>{{ articulo.content }}</p>
+      </div>
+      
+      <!-- El numero del lado derecho -->
+      <span class="post-index">0{{ forloop.counter }}</span>
+    </article>
+    {% empty %}
+    <p style="padding: 20px; color: #8f7d81;">Aún no he subido reseñas. ¡Vuelve pronto!</p>
     {% endfor %}
-</body>
-</html>
+  </div>
+</section>
+{% endblock %}

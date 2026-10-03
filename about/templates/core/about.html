@@ -1,11 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    About
-</body>
-</html>
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="page-shell section-shell about-layout">
+  <!-- Retrato Izquierdo -->
+  <div class="portrait">
+    <img src="{% static 'core/img/hani-portrait.png' %}" alt="Retrato Hello Kitty">
+  </div>
+  
+  <!-- Texto Derecho -->
+  <div class="about-copy">
+    <span class="eyebrow">un poquito sobre mí</span>
+    <h1>Hola, soy Hani.</h1>
+    <p class="lead">
+      Leo manhwas desde pequeña, soy fanática por la lectura y no hay día que no lea algo.
+    </p>
+    <p>
+      Creé este espacio como una estantería digital para guardar mis lecturas, compartir recomendaciones y encontrar a otras personas que también se encariñan demasiado con personajes ficticios.
+    </p>
+    
+    <div class="favorites">
+      <div>
+        <span>mi género favorito</span>
+        <p class="favorite-value">Romance</p>
+      </div>
+      <div>
+        <span>mi debilidad</span>
+        <p class="favorite-value">Enemies to lovers</p>
+      </div>
+      <div>
+        <span>siempre con</span>
+        <p class="favorite-value">El villano</p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

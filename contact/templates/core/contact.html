@@ -1,11 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    Contact
-</body>
-</html>
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="page-shell contact-page section-shell">
+  <!-- Texto Introductivo -->
+  <div class="contact-intro">
+    <span class="eyebrow">hablemos de historias</span>
+    <h1>¿Me recomiendas mi próxima lectura?</h1>
+    <p>
+      Cuéntame qué manhwa no puedes sacarte de la cabeza, o simplemente escríbeme para saludar.
+    </p>
+  </div>
+  
+  <!-- Formulario Soft -->
+  <form class="contact-form" method="POST" action="">
+    {% csrf_token %}
+    <label>
+      Tu nombre
+      <input type="text" name="nombre" placeholder="¿Cómo te llamas?" required />
+    </label>
+    <label>
+      Tu email
+      <input type="email" name="correo" placeholder="hola@email.com" required />
+    </label>
+    <label>
+      Mensaje
+      <textarea name="mensaje" placeholder="Tengo un manhwa que te va a encantar..." required></textarea>
+    </label>
+    <button class="primary-button" type="submit" style="width: 100%; margin-top: 15px;">
+      Enviar mensaje <span>→</span>
+    </button>
+  </form>
+</section>
+{% endblock %}
