@@ -1,0 +1,87 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}{{ post.title }} · BlogHani{% endblock %}
+
+{% block content %}
+<article class="page-shell section-shell post-detail">
+
+  <div class="hero-art detail-art" aria-label="Portada de {{ post.title }}">
+    <div class="soft-shape shape-one"></div>
+    <div class="soft-shape shape-two"></div>
+    <span class="sparkle sparkle-one">✦</span>
+    <span class="sparkle sparkle-two">✦</span>
+
+    <div class="feature-card">
+      {% include 'core/_cover.html' with post=post large=True %}
+      <div class="feature-caption">
+        <span>reseña de hani</span>
+        <strong>{{ post.title }}</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-copy">
+    <a class="back-link" href="{% url 'post' %}">← Todos mis posts</a>
+
+    <span class="eyebrow">{{ post.category|default:"reseña" }}</span>
+    <h1>{{ post.title }}</h1>
+
+    {% if post.author %}
+      <p class="detail-author">por {{ post.author }}</p>
+    {% endif %}
+
+    <div class="detail-rating">
+      <span class="stars" role="img" aria-label="{{ post.rating|stringformat:'.1f' }} de 5 estrellas">
+        <span class="stars-fill" style="width: {{ post.rating_percent }}%">★★★★★</span>
+      </span>
+      <strong>{{ post.rating|stringformat:".1f" }}</strong>
+      <small>de 5</small>
+    </div>
+
+    <div class="detail-body">
+      <span class="detail-label">sinopsis y reseña</span>
+      {{ post.detail|linebreaks }}
+    </div>
+
+    <div class="favorites detail-meta">
+      <div>
+        <span>publicado</span>
+        <p class="favorite-value">{{ post.created|date:"j \d\e F, Y" }}</p>
+      </div>
+
+      {% if post.author %}
+      <div>
+        <span>autor</span>
+        <p class="favorite-value">{{ post.author }}</p>
+      </div>
+      {% endif %}
+
+      {% if post.category %}
+      <div>
+        <span>categoría</span>
+        <p class="favorite-value">{{ post.category }}</p>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</article>
+
+{% if older or newer %}
+<nav class="post-pager section-shell" aria-label="Más lecturas">
+  {% if older %}
+  <a class="pager-link pager-prev" href="{% url 'post_detail' older.pk %}">
+    <span>← lectura anterior</span>
+    <strong>{{ older.title }}</strong>
+  </a>
+  {% endif %}
+
+  {% if newer %}
+  <a class="pager-link pager-next" href="{% url 'post_detail' newer.pk %}">
+    <span>lectura siguiente →</span>
+    <strong>{{ newer.title }}</strong>
+  </a>
+  {% endif %}
+</nav>
+{% endif %}
+{% endblock %}
