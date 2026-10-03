@@ -1,0 +1,16 @@
+services:
+  web:
+    image: nota2-web:latest
+    container_name: nota2
+    restart: unless-stopped
+    ports:
+      - "8080:8000" # <- change the LEFT number to the port you want
+    volumes:
+      - db_data:/app/data
+      - media_data:/app/media
+
+volumes:
+  db_data:
+    name: nota2_db_data
+  media_data:
+    name: nota2_media_data

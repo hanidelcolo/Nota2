@@ -36,6 +36,10 @@ db.sqlite3-shm
 staticfiles/
 media/CACHEDIRS.txt
 
+# Base de datos activa (punto de montaje del volumen Docker en el servidor).
+# La copia de semilla que se versiona sigue siendo ./db.sqlite3
+data/
+
 # Descomenta si en algun momento quieres la base de datos solo en local
 # db.sqlite3
 
