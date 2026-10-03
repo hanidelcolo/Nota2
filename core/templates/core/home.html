@@ -1,0 +1,46 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="hero">
+  <div class="hero-copy">
+    <span class="eyebrow">bienvenida a mi rincón de lectura</span>
+    <h1>
+      Manhwas
+      <br />
+      <span class="fg-inline-italic">leídos por mi.</span>
+    </h1>
+    <p>
+      Un pequeño blog donde guardo los manhwas que voy leyendo, junto con
+      su sinopsis, mi reseña, personajes favoritos y más.
+    </p>
+    <a href="{% url 'post' %}" class="primary-button">
+      Explorar mis lecturas <span aria-hidden="true">→</span>
+    </a>
+  </div>
+
+  <div class="hero-art" aria-label="Lectura destacada">
+    <div class="soft-shape shape-one"></div>
+    <div class="soft-shape shape-two"></div>
+    <span class="sparkle sparkle-one" style="position: absolute; top: 30px; right: 75px; color: #c79ba5;">✦</span>
+    <span class="sparkle sparkle-two" style="position: absolute; left: 20px; bottom: 100px; color: #c79ba5;">✦</span>
+    <div class="feature-card">
+      <div class="cover">
+        <span class="cover-kicker">a manhwa note</span>
+        <p>Seasons of Blossom</p>
+        <span style="color: #9c6873;">✦</span>
+      </div>
+      <div class="feature-caption">
+        <span>leyendo ahora</span>
+        <strong>Seasons of Blossom</strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="intro-strip">
+  <p>
+    romance lento <span>·</span> personajes memorables <span>·</span> finales que duelen bonito
+  </p>
+</section>
+{% endblock %}
