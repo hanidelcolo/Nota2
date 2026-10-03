@@ -1,0 +1,10 @@
+<div class="cover palette-{{ post.palette }}{% if large %} cover-large{% endif %}{% if post.image %} has-image{% endif %}" aria-hidden="true">
+  {% if post.image %}
+    <img class="cover-img" src="{{ post.image.url }}" alt="">
+  {% else %}
+    <div class="cover-orbit"></div>
+    <span class="cover-kicker">a manhwa note</span>
+    <p>{{ post.title }}</p>
+    <span class="cover-flower">✦</span>
+  {% endif %}
+</div>

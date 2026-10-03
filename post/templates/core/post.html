@@ -1,6 +1,8 @@
 {% extends 'core/base.html' %}
 {% load static %}
 
+{% block title %}Posts · BlogHani{% endblock %}
+
 {% block content %}
 <section class="page-shell section-shell">
   <div class="page-heading">
@@ -8,30 +10,24 @@
     <h1>Todos mis posts</h1>
     <p>Reseñas honestas, sin spoilers y escritas con mucho cariño.</p>
   </div>
-  
+
   <div class="post-list">
-    <!-- Inicio del Ciclo de Django -->
-    {% for articulo in news %}
+    {% for post in news %}
     <article class="post-row">
-      <!-- La portada del Manhwa -->
-      <div class="cover">
-        <div class="cover-orbit"></div>
-        <span class="cover-kicker">a manhwa note</span>
-        <p>{{ articulo.title }}</p>
-      </div>
-      
-      <!-- Contenido del Post -->
+      {% include 'core/_cover.html' with post=post %}
       <div>
-        <span class="category">Romance · Fantasía</span>
-        <h2>{{ articulo.title }}</h2>
-        <p>{{ articulo.content }}</p>
+        <span class="category">{{ post.category }}</span>
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.summary }}</p>
+        <span class="rating" aria-label="{{ post.rating|stringformat:'.1f' }} de 5 estrellas">
+          <span aria-hidden="true">★★★★★</span>
+          <strong>{{ post.rating|stringformat:".1f" }}</strong>
+        </span>
       </div>
-      
-      <!-- El numero del lado derecho -->
-      <span class="post-index">0{{ forloop.counter }}</span>
+      <span class="post-index">{{ forloop.counter|stringformat:"02d" }}</span>
     </article>
     {% empty %}
-    <p style="padding: 20px; color: #8f7d81;">Aún no he subido reseñas. ¡Vuelve pronto!</p>
+    <p class="empty-note">Aún no he subido reseñas. ¡Vuelve pronto!</p>
     {% endfor %}
   </div>
 </section>

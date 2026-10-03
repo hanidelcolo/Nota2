@@ -1,22 +1,23 @@
-{% load static %}
-<!DOCTYPE html>
+{% load static %}<!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BlogHani - Mi Diario de Manhwas</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Gilda+Display&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="{% static 'core/style.css' %}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}BlogHani · Mi diario de manhwas{% endblock %}</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Gilda+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'core/style.css' %}">
 </head>
-<body class="app">
+<body>
+  {% with current=request.resolver_match.url_name %}
+  <div class="app">
 
     <header class="site-header">
-      <a href="/" class="brand" style="text-decoration: none;">
+      <a href="{% url 'home' %}" class="brand">
         <span class="brand-mark header-brand-mark">
-          <!-- Ruta ajustada a tu carpeta assets -->
-          <img src="{% static 'core/assets/bloghani-logo.png' %}" alt="Logo BlogHani">
+          <img src="{% static 'core/assets/bloghani-logo.png' %}" alt="">
         </span>
         <span>
           <strong>BlogHani</strong>
@@ -24,23 +25,28 @@
         </span>
       </a>
 
-      <nav aria-label="Navegación principal">
-        <a href="/" style="text-decoration: none;"><button type="button">Inicio</button></a>
-        <a href="/post/" style="text-decoration: none;"><button type="button">Posts</button></a>
-        <a href="/about/" style="text-decoration: none;"><button type="button">Sobre mí</button></a>
-        <a href="/contact/" style="text-decoration: none;"><button type="button">Contacto</button></a>
+      <button class="menu-button" type="button" id="menu-button"
+              aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="main-nav" aria-label="Navegación principal">
+        <a href="{% url 'home' %}"{% if current == 'home' %} class="active" aria-current="page"{% endif %}>Inicio</a>
+        <a href="{% url 'post' %}"{% if current == 'post' %} class="active" aria-current="page"{% endif %}>Posts</a>
+        <a href="{% url 'about' %}"{% if current == 'about' %} class="active" aria-current="page"{% endif %}>Sobre mí</a>
+        <a href="{% url 'contact' %}"{% if current == 'contact' %} class="active" aria-current="page"{% endif %}>Contacto</a>
       </nav>
     </header>
 
     <main>
-        {% block content %}
-        {% endblock %}
+      {% block content %}{% endblock %}
     </main>
 
     <footer>
       <div class="footer-brand">
         <span class="brand-mark header-brand-mark">
-          <img src="{% static 'core/assets/bloghani-logo.png' %}" alt="Logo BlogHani">
+          <img src="{% static 'core/assets/bloghani-logo.png' %}" alt="">
         </span>
         <div>
           <strong>BlogHani</strong>
@@ -48,12 +54,25 @@
         </div>
       </div>
       <div class="footer-links">
-        <a href="/" style="text-decoration: none; color: inherit;"><button>Inicio</button></a>
-        <a href="/post/" style="text-decoration: none; color: inherit;"><button>Posts</button></a>
-        <a href="/about/" style="text-decoration: none; color: inherit;"><button>Sobre mí</button></a>
+        <a href="{% url 'home' %}">Inicio</a>
+        <a href="{% url 'post' %}">Posts</a>
+        <a href="{% url 'about' %}">Sobre mí</a>
       </div>
       <p class="copyright">Hecho por Karla Venegas · 2026</p>
     </footer>
 
+  </div>
+  {% endwith %}
+
+  <script>
+    (function () {
+      var btn = document.getElementById('menu-button');
+      var nav = document.getElementById('main-nav');
+      btn.addEventListener('click', function () {
+        var open = nav.classList.toggle('nav-open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    })();
+  </script>
 </body>
 </html>

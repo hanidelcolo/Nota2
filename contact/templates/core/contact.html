@@ -1,9 +1,10 @@
 {% extends 'core/base.html' %}
 {% load static %}
 
+{% block title %}Contacto · BlogHani{% endblock %}
+
 {% block content %}
-<section class="page-shell contact-page section-shell">
-  <!-- Texto Introductivo -->
+<section class="page-shell contact-page">
   <div class="contact-intro">
     <span class="eyebrow">hablemos de historias</span>
     <h1>¿Me recomiendas mi próxima lectura?</h1>
@@ -11,9 +12,8 @@
       Cuéntame qué manhwa no puedes sacarte de la cabeza, o simplemente escríbeme para saludar.
     </p>
   </div>
-  
-  <!-- Formulario Soft -->
-  <form class="contact-form" method="POST" action="">
+
+  <form class="contact-form" method="POST" action="{% url 'contact' %}">
     {% csrf_token %}
     <label>
       Tu nombre
@@ -27,9 +27,12 @@
       Mensaje
       <textarea name="mensaje" placeholder="Tengo un manhwa que te va a encantar..." required></textarea>
     </label>
-    <button class="primary-button" type="submit" style="width: 100%; margin-top: 15px;">
-      Enviar mensaje <span>→</span>
+    <button class="primary-button" type="submit">
+      Enviar mensaje <span aria-hidden="true">→</span>
     </button>
+    {% if sent %}
+    <p class="form-note" role="status">Gracias por escribirme. ¡Te responderé pronto!</p>
+    {% endif %}
   </form>
 </section>
 {% endblock %}
