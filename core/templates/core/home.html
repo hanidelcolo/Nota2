@@ -19,32 +19,42 @@
     </a>
   </div>
 
-  <div class="hero-art" aria-label="Lectura destacada">
+  <div class="hero-art" aria-label="Manhwas que estoy leyendo">
     <div class="soft-shape shape-one"></div>
     <div class="soft-shape shape-two"></div>
     <span class="sparkle sparkle-one">✦</span>
     <span class="sparkle sparkle-two">✦</span>
-    <div class="feature-card">
-      {% if featured %}
-        {% include 'core/_cover.html' with post=featured large=True %}
+
+    {% if reading_now %}
+    <div class="feature-card reading-carousel" data-reading-carousel>
+      {% for post in reading_now %}
+      <a class="reading-slide{% if forloop.first %} is-active{% endif %}"
+         href="{% url 'post_detail' post.pk %}"
+         aria-label="Leer {{ post.title }}"
+         data-reading-slide>
+        {% include 'core/_cover.html' with post=post large=True %}
         <div class="feature-caption">
           <span>leyendo ahora</span>
-          <strong>{{ featured.title }}</strong>
+          <strong>{{ post.title }}</strong>
         </div>
-      {% else %}
-        <div class="cover palette-rosa cover-large" aria-hidden="true">
-          <div class="cover-orbit"></div>
-          <span class="cover-kicker">a manhwa note</span>
-          <p>Mi próxima lectura</p>
-          <span class="cover-flower">✦</span>
-        </div>
-        <div class="feature-caption">
-          <span>leyendo ahora</span>
-          <strong>Muy pronto</strong>
-        </div>
-      {% endif %}
+      </a>
+      {% endfor %}
     </div>
-  </div>
+    {% else %}
+    <div class="feature-card">
+      <div class="cover palette-rosa cover-large" aria-hidden="true">
+        <div class="cover-orbit"></div>
+        <span class="cover-kicker">a manhwa note</span>
+        <p>Mi próxima lectura</p>
+        <span class="cover-flower">✦</span>
+      </div>
+      <div class="feature-caption">
+        <span>leyendo ahora</span>
+        <strong>Muy pronto</strong>
+      </div>
+    </div>
+    {% endif %}
+  </div>div>
 </section>
 
 <section class="intro-strip">
