@@ -28,6 +28,7 @@ urlpatterns = [
     path('about/',about_views.about,name="about"),
     path('contact/',contact_views.contact,name="contact"),
     path('post/',post_views.post,name="post"),
+    path('post/<int:pk>/',post_views.post_detail,name="post_detail"),
     path('admin/', admin.site.urls),
 ]
 
