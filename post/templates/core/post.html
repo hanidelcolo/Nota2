@@ -14,10 +14,12 @@
   <div class="post-list">
     {% for post in news %}
     <article class="post-row">
-      {% include 'core/_cover.html' with post=post %}
+      <a class="cover-link" href="{% url 'post_detail' post.pk %}" tabindex="-1">
+        {% include 'core/_cover.html' with post=post %}
+      </a>
       <div>
         <span class="category">{{ post.category }}</span>
-        <h2>{{ post.title }}</h2>
+        <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
         <p>{{ post.summary }}</p>
         <span class="rating" aria-label="{{ post.rating|stringformat:'.1f' }} de 5 estrellas">
           <span aria-hidden="true">★★★★★</span>
