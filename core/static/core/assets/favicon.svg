@@ -1,9 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
-  <title>BlogHani</title>
-  <desc>Ícono de una nota con la letra H</desc>
-  <rect width="64" height="64" rx="16" fill="#f4e3e5"/>
-  <path d="M17 10h24l11 11v33H17z" fill="#8f5966"/>
-  <path d="M41 10v13h13" fill="#b98490"/>
-  <path d="M27 29v19M39 29v19M27 38h12" fill="none" stroke="#fdfaf8" stroke-width="5" stroke-linecap="round"/>
-  <circle cx="22" cy="20" r="2.5" fill="#fdfaf8"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<rect width="64" height="64" rx="16" fill="#f7c5d5"/>
+<path d="M12 29V18c0-4 3-7 7-7h7l6 6 6-6h7c4 0 7 3 7 7v11c0 13-9 22-20 22S12 42 12 29Z" fill="#fff" stroke="#5b4147" stroke-width="2.5"/>
+<path d="M27 18c-3-2-7-1-9 1M37 18c3-2 7-1 9 1" fill="none" stroke="#5b4147" stroke-width="2.5" stroke-linecap="round"/>
+<ellipse cx="25" cy="31" rx="2.2" ry="3" fill="#5b4147"/>
+<ellipse cx="39" cy="31" rx="2.2" ry="3" fill="#5b4147"/>
+<ellipse cx="32" cy="37" rx="2.7" ry="2" fill="#f1c84b" stroke="#5b4147" stroke-width="1.2"/>
+<path d="M13 34H7M13 38H7M51 34h6M51 38h6" stroke="#5b4147" stroke-width="2" stroke-linecap="round"/>
+<path d="M43 10c2-4 7-4 9-1 2-3 7-2 7 2 0 4-5 6-7 7-2-1-7-4-7-8Z" fill="#ef82a6" stroke="#5b4147" stroke-width="1.5"/>
+<path d="M19 52h26v8H19z" fill="#ef82a6"/>
+<path d="M23 54h18" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
 </svg>
