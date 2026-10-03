@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlogHani - Mi Diario de Manhwas</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Gilda+Display&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static 'core/style.css' %}">
+</head>
+<body class="app">
+
+    <header class="site-header">
+      <a href="/" class="brand" style="text-decoration: none;">
+        <span class="brand-mark header-brand-mark">
+          <!-- Ruta ajustada a tu carpeta assets -->
+          <img src="{% static 'core/assets/bloghani-logo.png' %}" alt="Logo BlogHani">
+        </span>
+        <span>
+          <strong>BlogHani</strong>
+          <small>mi diario de manhwas</small>
+        </span>
+      </a>
+
+      <nav aria-label="Navegación principal">
+        <a href="/" style="text-decoration: none; color: inherit;"><button>Inicio</button></a>
+        <a href="/post/" style="text-decoration: none; color: inherit;"><button>Posts</button></a>
+        <a href="/about/" style="text-decoration: none; color: inherit;"><button>Sobre mí</button></a>
+        <a href="/contact/" style="text-decoration: none; color: inherit;"><button>Contacto</button></a>
+      </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+      <div class="footer-brand">
+        <span class="brand-mark header-brand-mark">
+          <img src="{% static 'core/assets/bloghani-logo.png' %}" alt="Logo BlogHani">
+        </span>
+        <div>
+          <strong>BlogHani</strong>
+          <p>Un diario de manhwas</p>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="/" style="text-decoration: none; color: inherit;"><button>Inicio</button></a>
+        <a href="/post/" style="text-decoration: none; color: inherit;"><button>Posts</button></a>
+        <a href="/about/" style="text-decoration: none; color: inherit;"><button>Sobre mí</button></a>
+      </div>
+      <p class="copyright">Hecho por Karla Venegas · 2026</p>
+    </footer>
+
+</body>
+</html>
